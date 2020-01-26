@@ -1,0 +1,24 @@
+{
+  "courses": [
+    {
+      "name": "ass",
+      "id": 1
+    },
+    {
+      "name": "ass",
+      "id": 2
+    },
+    {
+      "{name": "ass}",
+      "id": 3
+    },
+    {
+      "nam": "ass",
+      "id": 4
+    },
+    {
+      "nam": "ass, a=b",
+      "id": 5
+    }
+  ]
+}
