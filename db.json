@@ -1,40 +1,9 @@
 {
   "courses": [
     {
-      "name": "ass",
+      "name": "React",
+      "price": "5",
       "id": 1
-    },
-    {
-      "name": "ass",
-      "id": 2
-    },
-    {
-      "{name": "ass}",
-      "id": 3
-    },
-    {
-      "nam": "ass",
-      "id": 4
-    },
-    {
-      "nam": "ass, a=b",
-      "id": 5
-    },
-    {
-      "name": "ula",
-      "id": 6
-    },
-    {
-      "name": "brat",
-      "id": 7
-    },
-    {
-      "name": "adam",
-      "id": 8
-    },
-    {
-      "name": "dp",
-      "id": 9
     }
   ]
 }

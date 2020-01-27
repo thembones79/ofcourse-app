@@ -7,10 +7,10 @@ export const LOAD_COURSE_BEGIN = "LOAD_COURSE_BEGIN";
 export const LOAD_COURSE_SUCCESS = "LOAD_COURSE_SUCCESS";
 export const LOAD_COURSE_ERROR = "LOAD_COURSE_ERROR";
 
-export const addCourse = name => {
+export const addCourse = (name, price) => {
   return dispatch => {
     dispatch({ type: ADD_COURSE_BEGIN });
-    createCourse(name)
+    createCourse(name, price)
       .then(course => {
         dispatch({ type: ADD_COURSE_SUCCESS, payload: course });
       })

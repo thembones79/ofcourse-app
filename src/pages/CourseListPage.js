@@ -13,10 +13,11 @@ const CourseListPage = ({
   dispatch
 }) => {
   const [courseName, setCourseName] = useState("");
+  const [coursePrice, setCoursePrice] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addCourse(courseName));
+    dispatch(addCourse(courseName, coursePrice));
   };
 
   if (coursesLoading) {
@@ -42,6 +43,17 @@ const CourseListPage = ({
             <div className="saveError-message">Error: {saveError.message}</div>
           )}
         </label>
+        <label>
+          Set a price:
+          <input
+            value={coursePrice}
+            disabled={saveInProgress}
+            onChange={e => setCoursePrice(e.target.value)}
+          />
+          {saveError && (
+            <div className="saveError-message">Error: {saveError.message}</div>
+          )}
+        </label>
         <button type="submit" disabled={saveInProgress}>
           Create Course
         </button>
@@ -54,7 +66,7 @@ const CourseListPage = ({
         {courses.map(course => (
           <li key={course.id}>
             <div className="title">{course.name}</div>
-            <div className="price">$ ???</div>
+            <div className="price">$ {course.price}</div>
           </li>
         ))}
       </ul>
