@@ -30,3 +30,17 @@ input {
 p {
   margin-bottom: 1.4em;
 }
+
+.error-message {
+  color: #b30d0d;
+  font-weight: 600;
+}
+
+input[disabled] {
+  background-color: #eee;
+  color: #666;
+}
+
+button[disabled] {
+  opacity: 0.7;
+}
