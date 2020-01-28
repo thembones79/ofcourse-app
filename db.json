@@ -4,6 +4,11 @@
       "name": "React",
       "price": "5",
       "id": 1
+    },
+    {
+      "name": "ddt",
+      "price": "6",
+      "id": 2
     }
   ]
 }
