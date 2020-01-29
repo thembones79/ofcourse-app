@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "@reach/router";
 import Modal from "react-modal";
 
 import NewCourse from "../components/NewCourse";
@@ -35,8 +36,10 @@ const CourseListPage = ({
       <ul>
         {courses.map(course => (
           <li key={course.id}>
-            <div className="title">{course.name}</div>
-            <div className="price">$ {course.price}</div>
+            <Link to={`/courses/${course.id}`}>
+              <div className="title">{course.name}</div>
+              <div className="price">$ {course.price}</div>
+            </Link>
           </li>
         ))}
       </ul>
