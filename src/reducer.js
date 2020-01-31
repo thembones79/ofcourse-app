@@ -7,7 +7,10 @@ import {
   LOAD_COURSE_SUCCESS,
   LOAD_COURSE_ERROR,
   OPEN_NEW_COURSE_MODAL,
-  CLOSE_NEW_COURSE_MODAL
+  CLOSE_NEW_COURSE_MODAL,
+  //ADD_LESSON_BEGIN,
+  ADD_LESSON_SUCCESS
+  //ADD_LESSON_ERROR
 } from "./actions";
 
 const initialState = {
@@ -16,7 +19,8 @@ const initialState = {
   coursesError: null,
   saveInProgress: false,
   saveError: null,
-  newCourseModalOpen: false
+  newCourseModalOpen: false,
+  lessons: []
 };
 
 const reducer = produce((draft, action) => {
@@ -55,7 +59,9 @@ const reducer = produce((draft, action) => {
       draft.newCourseModalOpen = false;
       draft.saveError = null;
       return;
-
+    case ADD_LESSON_SUCCESS:
+      draft.lessons.push(action.payload);
+      return;
     default:
       return;
   }

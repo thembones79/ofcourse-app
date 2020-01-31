@@ -6,8 +6,8 @@ import Loading from "../components/Loading";
 import NewLesson from "../components/NewLesson";
 import "./CourseDetailPage.css";
 
-const CourseDetailPage = ({ courseId, course, loading }) => {
-  console.log({ courseId, course, loading });
+const CourseDetailPage = ({ course, lessons, loading }) => {
+  console.log({ lessons });
   if (loading) {
     return <Loading />;
   }
@@ -22,7 +22,14 @@ const CourseDetailPage = ({ courseId, course, loading }) => {
       </header>
       <div className="content">
         <div className="sidebar">
-          <NewLesson />
+          {lessons.length > 0 && (
+            <ul>
+              {lessons.map(lesson => (
+                <li key={lesson.id}>{lesson.name}</li>
+              ))}
+            </ul>
+          )}
+          <NewLesson courseId={course.id} />
         </div>
         <div className="lesson" />
       </div>
@@ -31,10 +38,12 @@ const CourseDetailPage = ({ courseId, course, loading }) => {
 };
 
 const mapState = (state, ownProps) => {
-  console.log({ state });
+  const courseId = parseInt(ownProps.courseId, 10);
+  console.log({ state, ownProps, courseId });
   return {
     loading: state.coursesLoading,
-    course: state.courses.find(c => c.id === parseInt(ownProps.courseId, 10))
+    lessons: state.lessons.filter(lesson => lesson.courseId === courseId),
+    course: state.courses.find(c => c.id === courseId)
   };
 };
 
