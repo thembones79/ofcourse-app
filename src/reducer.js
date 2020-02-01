@@ -8,9 +8,9 @@ import {
   LOAD_COURSE_ERROR,
   OPEN_NEW_COURSE_MODAL,
   CLOSE_NEW_COURSE_MODAL,
-  //ADD_LESSON_BEGIN,
-  ADD_LESSON_SUCCESS
-  //ADD_LESSON_ERROR
+  ADD_LESSON_BEGIN,
+  ADD_LESSON_SUCCESS,
+  ADD_LESSON_ERROR
 } from "./actions";
 
 const initialState = {
@@ -20,7 +20,9 @@ const initialState = {
   saveInProgress: false,
   saveError: null,
   newCourseModalOpen: false,
-  lessons: []
+  lessons: [],
+  lessonSaveInProgress: false,
+  lessonSaveError: null
 };
 
 const reducer = produce((draft, action) => {

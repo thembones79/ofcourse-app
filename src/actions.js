@@ -1,4 +1,4 @@
-import { createCourse, getCourses } from "./api";
+import { createCourse, getCourses, createLesson } from "./api";
 
 export const ADD_COURSE_BEGIN = "ADD_COURSE_BEGIN";
 export const ADD_COURSE_SUCCESS = "ADD_COURSE_SUCCESS";
@@ -20,21 +20,24 @@ export const addCourse = (name, price) => {
         dispatch({ type: ADD_COURSE_SUCCESS, payload: course });
       })
       .catch(error => {
-        dispatch({ type: ADD_COURSE_ERROR }, error);
+        dispatch({ type: ADD_COURSE_ERROR, error });
       });
   };
 };
 
 export const addLesson = (name, courseId) => {
   return dispatch => {
-    dispatch({
-      type: ADD_LESSON_SUCCESS,
-      payload: {
-        id: Math.random(),
-        name,
-        courseId
-      }
-    });
+    dispatch({ type: ADD_LESSON_BEGIN });
+    createLesson(name, courseId)
+      .then(course => {
+        dispatch({
+          type: ADD_LESSON_SUCCESS,
+          payload: course
+        });
+      })
+      .catch(error => {
+        dispatch({ type: ADD_LESSON_ERROR, error });
+      });
   };
 };
 
