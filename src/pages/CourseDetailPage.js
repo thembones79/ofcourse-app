@@ -41,9 +41,11 @@ const mapState = (state, ownProps) => {
   const courseId = parseInt(ownProps.courseId, 10);
   console.log({ state, ownProps, courseId });
   return {
-    loading: state.coursesLoading,
-    lessons: state.lessons.filter(lesson => lesson.courseId === courseId),
-    course: state.courses.find(c => c.id === courseId)
+    loading: state.courses.coursesLoading,
+    lessons: state.lessons.lessons.filter(
+      lesson => lesson.courseId === courseId
+    ),
+    course: state.courses.courses.find(c => c.id === courseId)
   };
 };
 

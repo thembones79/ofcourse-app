@@ -50,8 +50,8 @@ const NewCourse = ({ dispatch, saveInProgress, saveError }) => {
   );
 };
 const mapState = state => ({
-  saveInProgress: state.saveInProgress,
-  saveError: state.saveError
+  saveInProgress: state.courses.saveInProgress,
+  saveError: state.courses.saveError
 });
 
 export default connect(mapState)(NewCourse);

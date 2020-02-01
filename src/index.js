@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import Modal from "react-modal";
 
 import App from "./App";
-import reducer from "./reducer";
+import reducer from "./reducers";
 import { loadCourses } from "./actions";
 import "./index.css";
 
