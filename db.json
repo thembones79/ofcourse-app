@@ -11,5 +11,26 @@
       "id": 2
     }
   ],
-  "lessons": []
+  "lessons": [
+    {
+      "name": "fat",
+      "courseId": 1,
+      "id": 1
+    },
+    {
+      "name": "man",
+      "courseId": 1,
+      "id": 2
+    },
+    {
+      "name": "du",
+      "courseId": 2,
+      "id": 3
+    },
+    {
+      "name": "pa",
+      "courseId": 2,
+      "id": 4
+    }
+  ]
 }
