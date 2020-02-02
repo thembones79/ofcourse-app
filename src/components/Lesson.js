@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { addLesson, resetLessonError } from '../actions';
-import './Lesson.css';
+import React, { useState, useRef, useEffect } from "react";
+import { connect } from "react-redux";
+import { addLesson, resetLessonError, deleteLesson } from "../actions";
+import "./Lesson.css";
 
 const Lesson = ({
   resetError,
@@ -10,9 +10,10 @@ const Lesson = ({
   onSubmit,
   className,
   lesson,
-  children
+  children,
+  deleteLesson
 }) => {
-  const initialValue = lesson ? lesson.name : '';
+  const initialValue = lesson ? lesson.name : "";
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(initialValue);
   const inputRef = useRef();
@@ -43,6 +44,10 @@ const Lesson = ({
     setEditing(true);
   };
 
+  const performDelete = () => {
+    deleteLesson(lesson);
+  };
+
   useEffect(() => {
     if (editing) {
       inputRef.current.focus();
@@ -52,9 +57,7 @@ const Lesson = ({
   return editing ? (
     <>
       <form
-        className={`${className || ''} editing ${
-          error ? 'error' : ''
-        }`}
+        className={`${className || ""} editing ${error ? "error" : ""}`}
         onSubmit={commitEdit}
       >
         <input
@@ -69,7 +72,7 @@ const Lesson = ({
       {error && <div>{error.message}</div>}
     </>
   ) : (
-    children(beginEditing)
+    children(beginEditing, performDelete)
   );
 };
 
@@ -77,7 +80,8 @@ const mapState = state => ({
   saving: state.lessons.saving,
   error: state.lessons.error
 });
-export default connect(
-  mapState,
-  { addLesson, resetError: resetLessonError }
-)(Lesson);
+export default connect(mapState, {
+  addLesson,
+  resetError: resetLessonError,
+  deleteLesson
+})(Lesson);

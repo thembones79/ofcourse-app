@@ -54,14 +54,17 @@ const CourseDetailPage = ({
                       })
                     }
                   >
-                    {edit => (
+                    {(edit, remove) => (
                       <div className="lesson-item">
-                        {lesson.name}
+                        <span>{lesson.name}</span>
                         <button
                           onClick={() => edit(lesson.name)}
                           className="edit-lesson-btn"
                         >
                           Edit
+                        </button>
+                        <button className="delete-lesson-btn" onClick={remove}>
+                          Delete
                         </button>
                       </div>
                     )}
