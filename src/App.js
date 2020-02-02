@@ -1,6 +1,5 @@
 import React from "react";
 import { Router, Redirect } from "@reach/router";
-
 import CourseListPage from "./pages/CourseListPage";
 import CourseDetailPage from "./pages/CourseDetailPage";
 

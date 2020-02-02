@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
 import NotFoundPage from "./NotFoundPage";
 import Loading from "../components/Loading";
 import NewLesson from "../components/NewLesson";
@@ -9,10 +8,12 @@ import { getLessonsByCourse, getCourseById } from "../selectors";
 import "./CourseDetailPage.css";
 
 const CourseDetailPage = ({ course, lessons, loading, loadLessons }) => {
-  useEffect(() => {
-    // dispatch an action that will do the fetch (lessons fetch)
+  const loadHelper = () => {
+    // dispatch an action
     loadLessons(course.id);
-  }, [course]);
+  };
+
+  useEffect(loadHelper, [course]);
 
   if (loading) {
     return <Loading />;
@@ -51,5 +52,4 @@ const mapState = (state, ownProps) => {
     course: getCourseById(state, ownProps)
   };
 };
-
 export default connect(mapState, { loadLessons })(CourseDetailPage);

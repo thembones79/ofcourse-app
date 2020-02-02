@@ -1,19 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "@reach/router";
-import Modal from "react-modal";
-
-import NewCourse from "../components/NewCourse";
 import { openNewCourseModal, closeNewCourseModal } from "../actions";
+import Modal from "react-modal";
+import NewCourse from "../components/NewCourse";
 import "./CourseListPage.css";
 
 const CourseListPage = ({
   courses,
   coursesLoading,
   coursesError,
+  isModalOpen,
   openNewCourseModal,
-  closeNewCourseModal,
-  isModalOpen
+  closeNewCourseModal
 }) => {
   if (coursesLoading) {
     return <div />;
@@ -38,7 +37,7 @@ const CourseListPage = ({
           <li key={course.id}>
             <Link to={`/courses/${course.id}`}>
               <div className="title">{course.name}</div>
-              <div className="price">$ {course.price}</div>
+              <div className="price">${course.price.toFixed(2)}</div>
             </Link>
           </li>
         ))}
@@ -50,16 +49,14 @@ const CourseListPage = ({
   );
 };
 
-const mapState = state => {
-  console.log({ state });
-  return {
-    courses: state.courses.courses,
-    coursesLoading: state.courses.coursesLoading,
-    coursesError: state.courses.coursesError,
-    isModalOpen: state.courses.newCourseModalOpen
-  };
+const mapState = state => ({
+  courses: state.courses.courses,
+  coursesLoading: state.courses.coursesLoading,
+  coursesError: state.courses.coursesError,
+  isModalOpen: state.courses.newCourseModalOpen
+});
+const mapDispatch = {
+  openNewCourseModal,
+  closeNewCourseModal
 };
-
-export default connect(mapState, { openNewCourseModal, closeNewCourseModal })(
-  CourseListPage
-);
+export default connect(mapState, mapDispatch)(CourseListPage);

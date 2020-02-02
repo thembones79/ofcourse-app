@@ -3,22 +3,21 @@ import {
   ADD_COURSE_BEGIN,
   ADD_COURSE_SUCCESS,
   ADD_COURSE_ERROR,
-  LOAD_COURSE_BEGIN,
-  LOAD_COURSE_SUCCESS,
-  LOAD_COURSE_ERROR,
+  LOAD_COURSES_BEGIN,
+  LOAD_COURSES_SUCCESS,
+  LOAD_COURSES_ERROR,
   OPEN_NEW_COURSE_MODAL,
   CLOSE_NEW_COURSE_MODAL
 } from "../actions";
 
 const initialState = {
   coursesLoading: false,
-  courses: [],
   coursesError: null,
   saveInProgress: false,
   saveError: null,
+  courses: [],
   newCourseModalOpen: false
 };
-
 const reducer = produce((draft, action) => {
   switch (action.type) {
     case ADD_COURSE_BEGIN:
@@ -28,23 +27,20 @@ const reducer = produce((draft, action) => {
     case ADD_COURSE_SUCCESS:
       draft.saveInProgress = false;
       draft.courses.push(action.payload);
-      draft.saveError = null;
       draft.newCourseModalOpen = false;
       return;
     case ADD_COURSE_ERROR:
       draft.saveInProgress = false;
       draft.saveError = action.error;
       return;
-    case LOAD_COURSE_BEGIN:
+    case LOAD_COURSES_BEGIN:
       draft.coursesLoading = true;
-      draft.coursesError = null;
       return;
-    case LOAD_COURSE_SUCCESS:
-      draft.coursesLoading = false;
+    case LOAD_COURSES_SUCCESS:
       draft.courses = action.payload;
-      draft.coursesError = null;
+      draft.coursesLoading = false;
       return;
-    case LOAD_COURSE_ERROR:
+    case LOAD_COURSES_ERROR:
       draft.coursesLoading = false;
       draft.coursesError = action.error;
       return;

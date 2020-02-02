@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
-
 import { addCourse } from "../actions";
 import "./NewCourse.css";
-
 const NewCourse = ({ dispatch, saveInProgress, saveError }) => {
   const [courseName, setCourseName] = useState("");
-  const [coursePrice, setCoursePrice] = useState("");
+  const [price, setPrice] = useState("");
   const inputRef = useRef();
 
   useEffect(() => {
@@ -15,33 +13,33 @@ const NewCourse = ({ dispatch, saveInProgress, saveError }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addCourse(courseName, coursePrice));
+    dispatch(addCourse(courseName, price));
   };
+
   return (
     <div className="NewCourse">
       <h1>Create Your First Course</h1>
-
       <form onSubmit={handleSubmit}>
         <label>
           Pick a name:
           <input
             ref={inputRef}
-            value={courseName}
             disabled={saveInProgress}
+            value={courseName}
             onChange={e => setCourseName(e.target.value)}
           />
         </label>
         <label>
-          Set a price:
+          Pick a price:
           <input
-            value={coursePrice}
             disabled={saveInProgress}
-            onChange={e => setCoursePrice(e.target.value)}
+            value={price}
+            onChange={e => setPrice(e.target.value)}
           />
-          {saveError && (
-            <div className="saveError-message">Error: {saveError.message}</div>
-          )}
         </label>
+        {saveError && (
+          <div className="saveError-message">Error: {saveError.message}</div>
+        )}
         <button type="submit" disabled={saveInProgress}>
           Create Course
         </button>
@@ -49,9 +47,9 @@ const NewCourse = ({ dispatch, saveInProgress, saveError }) => {
     </div>
   );
 };
+
 const mapState = state => ({
   saveInProgress: state.courses.saveInProgress,
   saveError: state.courses.saveError
 });
-
 export default connect(mapState)(NewCourse);

@@ -1,76 +1,41 @@
 {
   "courses": [
     {
-      "name": "React",
-      "price": "5",
+      "name": "Woodworking 101",
+      "price": 49,
       "id": 1
     },
     {
-      "name": "ddt",
-      "price": "6",
+      "name": "Woodworking 201",
+      "price": 199,
       "id": 2
+    },
+    {
+      "name": "Build Your Own House",
+      "price": 299,
+      "id": 3
     }
   ],
   "lessons": [
     {
-      "name": "fat",
+      "name": "ffffff",
       "courseId": 1,
       "id": 1
     },
     {
-      "name": "man",
+      "name": "vgvggv",
       "courseId": 1,
       "id": 2
     },
     {
-      "name": "du",
+      "name": "vgvgvgvgvg",
       "courseId": 2,
       "id": 3
     },
     {
-      "name": "pa",
+      "name": "f9",
       "courseId": 2,
       "id": 4
-    },
-    {
-      "name": "vvvvvvv",
-      "courseId": 1,
-      "id": 5
-    },
-    {
-      "name": "bnbnbnbnbnbn",
-      "courseId": 1,
-      "id": 6
-    },
-    {
-      "name": "vvv",
-      "courseId": 1,
-      "id": 7
-    },
-    {
-      "name": "bjbki",
-      "courseId": 1,
-      "id": 8
-    },
-    {
-      "name": "car",
-      "courseId": 2,
-      "id": 9
-    },
-    {
-      "name": "ton",
-      "courseId": 2,
-      "id": 10
-    },
-    {
-      "name": "tra",
-      "courseId": 2,
-      "id": 11
-    },
-    {
-      "name": "bant",
-      "courseId": 2,
-      "id": 12
     }
   ]
 }
