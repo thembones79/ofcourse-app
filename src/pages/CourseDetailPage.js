@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import NotFoundPage from "./NotFoundPage";
 import Loading from "../components/Loading";
 import NewLesson from "../components/NewLesson";
+import { loadLessons } from "../actions";
+import { getLessonsByCourse, getCourseById } from "../selectors";
 import "./CourseDetailPage.css";
 
-const CourseDetailPage = ({ course, lessons, loading }) => {
-  console.log({ lessons });
+const CourseDetailPage = ({ course, lessons, loading, loadLessons }) => {
+  useEffect(() => {
+    // dispatch an action that will do the fetch (lessons fetch)
+    loadLessons(course.id);
+  }, [course]);
+
   if (loading) {
     return <Loading />;
   }
@@ -15,6 +21,7 @@ const CourseDetailPage = ({ course, lessons, loading }) => {
   if (!course) {
     return <NotFoundPage />;
   }
+
   return (
     <div className="CourseDetail">
       <header>
@@ -38,15 +45,11 @@ const CourseDetailPage = ({ course, lessons, loading }) => {
 };
 
 const mapState = (state, ownProps) => {
-  const courseId = parseInt(ownProps.courseId, 10);
-  console.log({ state, ownProps, courseId });
   return {
     loading: state.courses.coursesLoading,
-    lessons: state.lessons.lessons.filter(
-      lesson => lesson.courseId === courseId
-    ),
-    course: state.courses.courses.find(c => c.id === courseId)
+    lessons: getLessonsByCourse(state, ownProps),
+    course: getCourseById(state, ownProps)
   };
 };
 
-export default connect(mapState)(CourseDetailPage);
+export default connect(mapState, { loadLessons })(CourseDetailPage);

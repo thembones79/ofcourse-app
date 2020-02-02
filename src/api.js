@@ -15,6 +15,12 @@ export const createLesson = (name, courseId) => {
   });
 };
 
+export const getLessons = courseId => {
+  return fetch(PREFIX + "/lessons?courseId=" + courseId).then(res =>
+    res.json()
+  );
+};
+
 function postData(url = ``, data = {}) {
   return fetch(url, {
     method: "POST",

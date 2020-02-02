@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
-import { addLesson } from "../actions";
+import { addLesson, resetLessonError } from "../actions";
 
 import "./NewLesson.css";
 
-const NewLesson = ({ addLesson, courseId }) => {
+const NewLesson = ({ addLesson, resetError, courseId, saving, error }) => {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState("");
   const inputRef = useRef();
@@ -12,12 +12,25 @@ const NewLesson = ({ addLesson, courseId }) => {
   const reset = () => {
     setTitle("");
     setEditing(false);
+    resetError();
   };
 
   const commitEdit = e => {
     e.preventDefault();
     addLesson(title, courseId);
-    reset();
+    /*
+      .then(reset)
+      .catch(error => {
+        setEditing(false);
+        setEditing(true);
+      });
+      */
+  };
+
+  const cancelEdit = () => {
+    if (!saving) {
+      reset();
+    }
   };
 
   useEffect(() => {
@@ -27,15 +40,18 @@ const NewLesson = ({ addLesson, courseId }) => {
   }, [editing]);
 
   return editing ? (
-    <form className="add-lesson-button editing" onSubmit={commitEdit}>
-      <input
-        ref={inputRef}
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        onBlur={reset}
-        placeholder="Name the lesson"
-      />
-    </form>
+    <>
+      <form className="add-lesson-button editing" onSubmit={commitEdit}>
+        <input
+          ref={inputRef}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          onBlur={cancelEdit}
+          placeholder="Name the lesson"
+        />
+      </form>
+      {error && <div>{error.message}</div>}
+    </>
   ) : (
     <button className="add-lesson-button" onClick={() => setEditing(true)}>
       New Lesson
@@ -43,4 +59,11 @@ const NewLesson = ({ addLesson, courseId }) => {
   );
 };
 
-export default connect(null, { addLesson })(NewLesson);
+const mapState = state => ({
+  saving: state.lessons.saving,
+  error: state.lessons.error
+});
+
+export default connect(mapState, { addLesson, resetError: resetLessonError })(
+  NewLesson
+);
