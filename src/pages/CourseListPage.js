@@ -1,10 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "@reach/router";
-import { openNewCourseModal, closeNewCourseModal } from "../actions";
-import Modal from "react-modal";
-import NewCourse from "../components/NewCourse";
-import "./CourseListPage.css";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from '@reach/router';
+import {
+  openNewCourseModal,
+  closeNewCourseModal
+} from '../actions';
+import Modal from 'react-modal';
+import NewCourse from '../components/NewCourse';
+import './CourseListPage.css';
 
 const CourseListPage = ({
   courses,
@@ -29,7 +32,10 @@ const CourseListPage = ({
   ) : (
     <div className="CourseList">
       <h1>Your Courses</h1>
-      <button className="new-course-btn" onClick={openNewCourseModal}>
+      <button
+        className="new-course-btn"
+        onClick={openNewCourseModal}
+      >
         New Course
       </button>
       <ul>
@@ -37,12 +43,17 @@ const CourseListPage = ({
           <li key={course.id}>
             <Link to={`/courses/${course.id}`}>
               <div className="title">{course.name}</div>
-              <div className="price">${course.price.toFixed(2)}</div>
+              <div className="price">
+                ${course.price.toFixed(2)}
+              </div>
             </Link>
           </li>
         ))}
       </ul>
-      <Modal isOpen={isModalOpen} onRequestClose={closeNewCourseModal}>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeNewCourseModal}
+      >
         <NewCourse />
       </Modal>
     </div>
@@ -59,4 +70,7 @@ const mapDispatch = {
   openNewCourseModal,
   closeNewCourseModal
 };
-export default connect(mapState, mapDispatch)(CourseListPage);
+export default connect(
+  mapState,
+  mapDispatch
+)(CourseListPage);

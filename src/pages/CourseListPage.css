@@ -64,7 +64,8 @@
   flex-direction: column;
 }
 .CourseList h1 {
-  font-family: "Bebas Neue", "Helvetica Neue", arial, sans-serif;
+  font-family: 'Bebas Neue', 'Helvetica Neue', arial,
+    sans-serif;
   font-size: 60px;
   color: #43005a;
   margin-top: 0.2em;
@@ -92,7 +93,7 @@
   align-self: flex-end;
   color: #fff;
   font-size: 16px;
-  font-family: "Source Sans Pro", helvetica, sans-serif;
+  font-family: 'Source Sans Pro', helvetica, sans-serif;
   background: #9c27b0;
   border: none;
   font-weight: 600;
@@ -101,7 +102,8 @@
 }
 .CourseList .new-course-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px 2px #9c27b0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 5px 2px #9c27b0;
 }
 .CourseList .new-course-btn:active {
   background-color: purple;

@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import './Loading.css';
 
-import "./Loading.css";
-
-const Loading = () => <div className="Loading">Loading...</div>;
+const Loading = () => (
+  <div className="Loading">Loading...</div>
+);
 
 export default Loading;

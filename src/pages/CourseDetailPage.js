@@ -2,26 +2,36 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import NotFoundPage from "./NotFoundPage";
 import Loading from "../components/Loading";
-import NewLesson from "../components/NewLesson";
-import { loadLessons } from "../actions";
+import Lesson from "../components/Lesson";
+import { loadLessons, addLesson, saveLesson } from "../actions";
 import { getLessonsByCourse, getCourseById } from "../selectors";
 import "./CourseDetailPage.css";
 
-const CourseDetailPage = ({ course, lessons, loading, loadLessons }) => {
+const CourseDetailPage = ({
+  course,
+  lessons,
+  loading,
+  loadLessons,
+  addLesson,
+  saveLesson
+}) => {
+  console.log({ course1: course, loading1: loading });
   const loadHelper = () => {
+    console.log({ course2: course, loading2: loading });
+
+    if (loading) {
+      return <Loading />;
+    }
+
+    if (!course) {
+      return <NotFoundPage />;
+    }
+
     // dispatch an action
     loadLessons(course.id);
   };
 
   useEffect(loadHelper, [course]);
-
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (!course) {
-    return <NotFoundPage />;
-  }
 
   return (
     <div className="CourseDetail">
@@ -31,13 +41,45 @@ const CourseDetailPage = ({ course, lessons, loading, loadLessons }) => {
       <div className="content">
         <div className="sidebar">
           {lessons.length > 0 && (
-            <ul>
+            <ul className="lessons">
               {lessons.map(lesson => (
-                <li key={lesson.id}>{lesson.name}</li>
+                <li key={lesson.id}>
+                  <Lesson
+                    className="lesson-item"
+                    lesson={lesson}
+                    onSubmit={name =>
+                      saveLesson({
+                        ...lesson,
+                        name
+                      })
+                    }
+                  >
+                    {edit => (
+                      <div className="lesson-item">
+                        {lesson.name}
+                        <button
+                          onClick={() => edit(lesson.name)}
+                          className="edit-lesson-btn"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    )}
+                  </Lesson>
+                </li>
               ))}
             </ul>
           )}
-          <NewLesson courseId={course.id} />
+          <Lesson
+            className="add-lesson-button"
+            onSubmit={title => addLesson(title, course.id)}
+          >
+            {edit => (
+              <button className="add-lesson-button" onClick={edit}>
+                New Lesson
+              </button>
+            )}
+          </Lesson>
         </div>
         <div className="lesson" />
       </div>
@@ -52,4 +94,6 @@ const mapState = (state, ownProps) => {
     course: getCourseById(state, ownProps)
   };
 };
-export default connect(mapState, { loadLessons })(CourseDetailPage);
+export default connect(mapState, { loadLessons, addLesson, saveLesson })(
+  CourseDetailPage
+);

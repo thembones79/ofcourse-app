@@ -1,22 +1,31 @@
-import React, { useState, useRef, useEffect } from "react";
-import { connect } from "react-redux";
-import { addLesson, resetLessonError } from "../actions";
-import "./NewLesson.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { addLesson, resetLessonError } from '../actions';
+import './Lesson.css';
 
-const NewLesson = ({ addLesson, resetError, courseId, saving, error }) => {
+const Lesson = ({
+  resetError,
+  saving,
+  error,
+  onSubmit,
+  className,
+  lesson,
+  children
+}) => {
+  const initialValue = lesson ? lesson.name : '';
   const [editing, setEditing] = useState(false);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(initialValue);
   const inputRef = useRef();
 
   const reset = () => {
-    setTitle("");
+    setTitle(initialValue);
     setEditing(false);
     resetError();
   };
 
   const commitEdit = e => {
     e.preventDefault();
-    addLesson(title, courseId)
+    onSubmit(title)
       .then(reset)
       .catch(error => {
         setEditing(false);
@@ -30,6 +39,10 @@ const NewLesson = ({ addLesson, resetError, courseId, saving, error }) => {
     }
   };
 
+  const beginEditing = () => {
+    setEditing(true);
+  };
+
   useEffect(() => {
     if (editing) {
       inputRef.current.focus();
@@ -39,7 +52,9 @@ const NewLesson = ({ addLesson, resetError, courseId, saving, error }) => {
   return editing ? (
     <>
       <form
-        className={`add-lesson-button editing ${error ? "error" : ""}`}
+        className={`${className || ''} editing ${
+          error ? 'error' : ''
+        }`}
         onSubmit={commitEdit}
       >
         <input
@@ -54,9 +69,7 @@ const NewLesson = ({ addLesson, resetError, courseId, saving, error }) => {
       {error && <div>{error.message}</div>}
     </>
   ) : (
-    <button className="add-lesson-button" onClick={() => setEditing(true)}>
-      New Lesson
-    </button>
+    children(beginEditing)
   );
 };
 
@@ -64,6 +77,7 @@ const mapState = state => ({
   saving: state.lessons.saving,
   error: state.lessons.error
 });
-export default connect(mapState, { addLesson, resetError: resetLessonError })(
-  NewLesson
-);
+export default connect(
+  mapState,
+  { addLesson, resetError: resetLessonError }
+)(Lesson);

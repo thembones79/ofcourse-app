@@ -1,13 +1,16 @@
-import produce from "immer";
+import produce from 'immer';
 import {
   ADD_LESSON_SUCCESS,
   ADD_LESSON_BEGIN,
   ADD_LESSON_ERROR,
+  SAVE_LESSON_SUCCESS,
+  SAVE_LESSON_BEGIN,
+  SAVE_LESSON_ERROR,
   LOAD_LESSONS_SUCCESS,
   LOAD_LESSONS_BEGIN,
   LOAD_LESSONS_ERROR,
   RESET_LESSON_ERROR
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   lessons: {},
@@ -31,14 +34,17 @@ const reducer = produce((draft, action) => {
       draft.error = action.error;
       return;
     case ADD_LESSON_BEGIN:
+    case SAVE_LESSON_BEGIN:
       draft.saving = true;
       draft.error = null;
       return;
     case ADD_LESSON_ERROR:
+    case SAVE_LESSON_ERROR:
       draft.saving = false;
       draft.error = action.error;
       return;
     case ADD_LESSON_SUCCESS:
+    case SAVE_LESSON_SUCCESS:
       draft.saving = false;
       draft.lessons[action.payload.id] = action.payload;
       return;

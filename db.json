@@ -18,24 +18,44 @@
   ],
   "lessons": [
     {
-      "name": "ffffff",
+      "name": "Choosing good lumber",
       "courseId": 1,
       "id": 1
     },
     {
-      "name": "vgvggv",
+      "name": "Which tools to buy",
       "courseId": 1,
       "id": 2
     },
     {
-      "name": "vgvgvgvgvg",
-      "courseId": 2,
+      "name": "Safety",
+      "courseId": 1,
       "id": 3
     },
     {
-      "name": "f9",
-      "courseId": 2,
+      "name": "How to use a miter saw",
+      "courseId": 1,
       "id": 4
+    },
+    {
+      "name": "First project: basic workbenchiiii",
+      "courseId": 1,
+      "id": 5
+    },
+    {
+      "name": "b",
+      "courseId": 1,
+      "id": 6
+    },
+    {
+      "name": "c",
+      "courseId": 1,
+      "id": 7
+    },
+    {
+      "name": "g",
+      "courseId": 1,
+      "id": 8
     }
   ]
 }

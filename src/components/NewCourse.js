@@ -1,10 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import { connect } from "react-redux";
-import { addCourse } from "../actions";
-import "./NewCourse.css";
-const NewCourse = ({ dispatch, saveInProgress, saveError }) => {
-  const [courseName, setCourseName] = useState("");
-  const [price, setPrice] = useState("");
+import React, { useState, useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { addCourse } from '../actions';
+import './NewCourse.css';
+const NewCourse = ({
+  dispatch,
+  saveInProgress,
+  saveError
+}) => {
+  const [courseName, setCourseName] = useState('');
+  const [price, setPrice] = useState('');
   const inputRef = useRef();
 
   useEffect(() => {
@@ -38,7 +42,9 @@ const NewCourse = ({ dispatch, saveInProgress, saveError }) => {
           />
         </label>
         {saveError && (
-          <div className="saveError-message">Error: {saveError.message}</div>
+          <div className="saveError-message">
+            Error: {saveError.message}
+          </div>
         )}
         <button type="submit" disabled={saveInProgress}>
           Create Course

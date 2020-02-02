@@ -1,20 +1,31 @@
-import { createCourse, getCourses, createLesson, getLessons } from "./api";
+import {
+  createCourse,
+  getCourses,
+  createLesson,
+  getLessons,
+  updateLesson
+} from './api';
 
-export const ADD_COURSE_BEGIN = "ADD_COURSE_BEGIN";
-export const ADD_COURSE_SUCCESS = "ADD_COURSE_SUCCESS";
-export const ADD_COURSE_ERROR = "ADD_COURSE_ERROR";
-export const LOAD_COURSES_BEGIN = "LOAD_COURSES_BEGIN";
-export const LOAD_COURSES_SUCCESS = "LOAD_COURSES_SUCCESS";
-export const LOAD_COURSES_ERROR = "LOAD_COURSES_ERROR";
-export const OPEN_NEW_COURSE_MODAL = "OPEN_NEW_COURSE_MODAL";
-export const CLOSE_NEW_COURSE_MODAL = "CLOSE_NEW_COURSE_MODAL";
-export const LOAD_LESSONS_BEGIN = "LOAD_LESSONS_BEGIN";
-export const LOAD_LESSONS_SUCCESS = "LOAD_LESSONS_SUCCESS";
-export const LOAD_LESSONS_ERROR = "LOAD_LESSONS_ERROR";
-export const ADD_LESSON_BEGIN = "ADD_LESSON_BEGIN";
-export const ADD_LESSON_SUCCESS = "ADD_LESSON_SUCCESS";
-export const ADD_LESSON_ERROR = "ADD_LESSON_ERROR";
-export const RESET_LESSON_ERROR = "RESET_LESSON_ERROR";
+export const ADD_COURSE_BEGIN = 'ADD_COURSE_BEGIN';
+export const ADD_COURSE_SUCCESS = 'ADD_COURSE_SUCCESS';
+export const ADD_COURSE_ERROR = 'ADD_COURSE_ERROR';
+export const LOAD_COURSES_BEGIN = 'LOAD_COURSES_BEGIN';
+export const LOAD_COURSES_SUCCESS = 'LOAD_COURSES_SUCCESS';
+export const LOAD_COURSES_ERROR = 'LOAD_COURSES_ERROR';
+export const OPEN_NEW_COURSE_MODAL =
+  'OPEN_NEW_COURSE_MODAL';
+export const CLOSE_NEW_COURSE_MODAL =
+  'CLOSE_NEW_COURSE_MODAL';
+export const LOAD_LESSONS_BEGIN = 'LOAD_LESSONS_BEGIN';
+export const LOAD_LESSONS_SUCCESS = 'LOAD_LESSONS_SUCCESS';
+export const LOAD_LESSONS_ERROR = 'LOAD_LESSONS_ERROR';
+export const ADD_LESSON_BEGIN = 'ADD_LESSON_BEGIN';
+export const ADD_LESSON_SUCCESS = 'ADD_LESSON_SUCCESS';
+export const ADD_LESSON_ERROR = 'ADD_LESSON_ERROR';
+export const SAVE_LESSON_BEGIN = 'SAVE_LESSON_BEGIN';
+export const SAVE_LESSON_SUCCESS = 'SAVE_LESSON_SUCCESS';
+export const SAVE_LESSON_ERROR = 'SAVE_LESSON_ERROR';
+export const RESET_LESSON_ERROR = 'RESET_LESSON_ERROR';
 
 export const addCourse = (name, price) => {
   return dispatch => {
@@ -44,6 +55,23 @@ export const addLesson = (name, courseId) => {
       })
       .catch(error => {
         dispatch({ type: ADD_LESSON_ERROR, error });
+        throw error;
+      });
+  };
+};
+
+export const saveLesson = lesson => {
+  return dispatch => {
+    dispatch({ type: SAVE_LESSON_BEGIN });
+    return updateLesson(lesson)
+      .then(lesson => {
+        dispatch({
+          type: SAVE_LESSON_SUCCESS,
+          payload: lesson
+        });
+      })
+      .catch(error => {
+        dispatch({ type: SAVE_LESSON_ERROR, error });
         throw error;
       });
   };

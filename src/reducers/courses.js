@@ -1,4 +1,4 @@
-import produce from "immer";
+import produce from 'immer';
 import {
   ADD_COURSE_BEGIN,
   ADD_COURSE_SUCCESS,
@@ -8,7 +8,7 @@ import {
   LOAD_COURSES_ERROR,
   OPEN_NEW_COURSE_MODAL,
   CLOSE_NEW_COURSE_MODAL
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   coursesLoading: false,
