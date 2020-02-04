@@ -28,6 +28,7 @@ export const SAVE_LESSON_BEGIN = "SAVE_LESSON_BEGIN";
 export const SAVE_LESSON_SUCCESS = "SAVE_LESSON_SUCCESS";
 export const SAVE_LESSON_ERROR = "SAVE_LESSON_ERROR";
 export const RESET_LESSON_ERROR = "RESET_LESSON_ERROR";
+export const SET_LESSON_MARKDOWN = "SET_LESSON_MARKDOWN";
 
 export const addCourse = (name, price) => {
   return dispatch => {
@@ -76,6 +77,24 @@ export const saveLesson = lesson => {
         dispatch({ type: SAVE_LESSON_ERROR, error });
         throw error;
       });
+  };
+};
+
+let saveTimer = null;
+
+export const setLessonMarkdown = (lesson, markdown) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: SET_LESSON_MARKDOWN,
+      payload: { lesson, markdown }
+    });
+    if (saveTimer) {
+      clearTimeout(saveTimer);
+    }
+    saveTimer = setTimeout(() => {
+      const latest = getState().lessons.lessons[lesson.id];
+      dispatch(saveLesson(latest));
+    }, 1000);
   };
 };
 
