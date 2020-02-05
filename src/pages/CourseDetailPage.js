@@ -4,7 +4,12 @@ import { Link, Match } from "@reach/router";
 import NotFoundPage from "./NotFoundPage";
 import Loading from "../components/Loading";
 import Lesson from "../components/Lesson";
-import { loadLessons, addLesson, saveLesson } from "../actions";
+import {
+  loadLessons,
+  addLesson,
+  saveLesson,
+  togglePreviewMode
+} from "../actions";
 import { getLessonsByCourse, getCourseById } from "../selectors";
 import "./CourseDetailPage.css";
 
@@ -15,7 +20,9 @@ const CourseDetailPage = ({
   loadLessons,
   addLesson,
   saveLesson,
-  children
+  children,
+  togglePreviewMode,
+  previewMode
 }) => {
   console.log({ course1: course, loading1: loading });
   const loadHelper = () => {
@@ -39,6 +46,9 @@ const CourseDetailPage = ({
     <div className="CourseDetail">
       <header>
         <h1>{course.name}</h1>
+        <button className="prebiew-btn" onClick={togglePreviewMode}>
+          {previewMode ? "Edit" : "Preview"}
+        </button>
       </header>
       <div className="content">
         <div className="sidebar">
@@ -106,11 +116,15 @@ const CourseDetailPage = ({
 
 const mapState = (state, ownProps) => {
   return {
+    previewMode: state.app.previewMode,
     loading: state.courses.coursesLoading,
     lessons: getLessonsByCourse(state, ownProps),
     course: getCourseById(state, ownProps)
   };
 };
-export default connect(mapState, { loadLessons, addLesson, saveLesson })(
-  CourseDetailPage
-);
+export default connect(mapState, {
+  loadLessons,
+  addLesson,
+  saveLesson,
+  togglePreviewMode
+})(CourseDetailPage);

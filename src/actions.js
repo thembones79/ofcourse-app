@@ -29,6 +29,7 @@ export const SAVE_LESSON_SUCCESS = "SAVE_LESSON_SUCCESS";
 export const SAVE_LESSON_ERROR = "SAVE_LESSON_ERROR";
 export const RESET_LESSON_ERROR = "RESET_LESSON_ERROR";
 export const SET_LESSON_MARKDOWN = "SET_LESSON_MARKDOWN";
+export const TOGGLE_PREVIEW_MODE = "TOGGLE_PREVIEW_MODE";
 
 export const addCourse = (name, price) => {
   return dispatch => {
@@ -157,4 +158,8 @@ export const openNewCourseModal = () => ({
 
 export const closeNewCourseModal = () => ({
   type: CLOSE_NEW_COURSE_MODAL
+});
+
+export const togglePreviewMode = () => ({
+  type: TOGGLE_PREVIEW_MODE
 });
