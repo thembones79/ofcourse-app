@@ -45,7 +45,7 @@ const CourseDetailPage = ({
   return (
     <div className="CourseDetail">
       <header>
-        <h1>{course.name}</h1>
+        <h1>{course ? course.name : "Please wait"}</h1>
         <button className="prebiew-btn" onClick={togglePreviewMode}>
           {previewMode ? "Edit" : "Preview"}
         </button>

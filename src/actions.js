@@ -4,7 +4,9 @@ import {
   createLesson,
   getLessons,
   updateLesson,
-  destroyLesson
+  destroyLesson,
+  loginUser,
+  createUser
 } from "./api";
 
 export const ADD_COURSE_BEGIN = "ADD_COURSE_BEGIN";
@@ -30,6 +32,13 @@ export const SAVE_LESSON_ERROR = "SAVE_LESSON_ERROR";
 export const RESET_LESSON_ERROR = "RESET_LESSON_ERROR";
 export const SET_LESSON_MARKDOWN = "SET_LESSON_MARKDOWN";
 export const TOGGLE_PREVIEW_MODE = "TOGGLE_PREVIEW_MODE";
+
+export const LOGIN_BEGIN = "LOGIN_BEGIN";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const SIGNUP_BEGIN = "SIGNUP_BEGIN";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_ERROR = "SIGNUP_ERROR";
 
 export const addCourse = (name, price) => {
   return dispatch => {
@@ -148,6 +157,38 @@ export const loadLessons = courseId => {
       })
       .catch(error => {
         dispatch({ type: LOAD_LESSONS_ERROR, error });
+      });
+  };
+};
+
+export const login = (username, password) => {
+  return dispatch => {
+    dispatch({ type: LOGIN_BEGIN });
+    loginUser(username, password)
+      .then(user => {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: user
+        });
+      })
+      .catch(error => {
+        dispatch({ type: LOGIN_ERROR, error });
+      });
+  };
+};
+
+export const signup = (username, password) => {
+  return dispatch => {
+    dispatch({ type: SIGNUP_BEGIN });
+    createUser(username, password)
+      .then(user => {
+        dispatch({
+          type: SIGNUP_SUCCESS,
+          payload: user
+        });
+      })
+      .catch(error => {
+        dispatch({ type: SIGNUP_ERROR, error });
       });
   };
 };
