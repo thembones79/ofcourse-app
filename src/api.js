@@ -1,5 +1,10 @@
 const PREFIX = "/api";
 
+let authToken = null;
+export const setToken = token => {
+  authToken = token;
+};
+
 export const createCourse = (name, price) => {
   return postData(PREFIX + "/courses", {
     name,
