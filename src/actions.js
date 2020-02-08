@@ -39,6 +39,7 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const SIGNUP_BEGIN = "SIGNUP_BEGIN";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_ERROR = "SIGNUP_ERROR";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export const addCourse = (name, price) => {
   return dispatch => {
@@ -203,4 +204,21 @@ export const closeNewCourseModal = () => ({
 
 export const togglePreviewMode = () => ({
   type: TOGGLE_PREVIEW_MODE
+});
+
+export const loadLastUser = () => {
+  return dispatch => {
+    const json = localStorage.getItem("currentUser");
+
+    try {
+      const user = JSON.parse(json);
+      dispatch({ type: LOGIN_SUCCESS, payload: user });
+    } catch (e) {
+      dispatch(logout());
+    }
+  };
+};
+
+export const logout = () => ({
+  type: LOGOUT_SUCCESS
 });
