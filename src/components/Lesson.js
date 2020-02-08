@@ -1,19 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import { connect } from "react-redux";
-import { addLesson, resetLessonError, deleteLesson } from "../actions";
-import "./Lesson.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { deleteLesson, resetLessonError } from '../actions';
+import './Lesson.css';
 
 const Lesson = ({
   resetError,
+  deleteLesson,
   saving,
   error,
   onSubmit,
   className,
   lesson,
-  children,
-  deleteLesson
+  children
 }) => {
-  const initialValue = lesson ? lesson.name : "";
+  const initialValue = lesson ? lesson.name : '';
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(initialValue);
   const inputRef = useRef();
@@ -57,7 +57,9 @@ const Lesson = ({
   return editing ? (
     <>
       <form
-        className={`${className || ""} editing ${error ? "error" : ""}`}
+        className={`${className || ''} editing ${
+          error ? 'error' : ''
+        }`}
         onSubmit={commitEdit}
       >
         <input
@@ -80,8 +82,7 @@ const mapState = state => ({
   saving: state.lessons.saving,
   error: state.lessons.error
 });
-export default connect(mapState, {
-  addLesson,
-  resetError: resetLessonError,
-  deleteLesson
-})(Lesson);
+export default connect(
+  mapState,
+  { resetError: resetLessonError, deleteLesson }
+)(Lesson);

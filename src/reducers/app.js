@@ -1,5 +1,5 @@
-import produce from "immer";
-import { TOGGLE_PREVIEW_MODE } from "../actions";
+import produce from 'immer';
+import { TOGGLE_PREVIEW_MODE } from '../actions';
 
 const initialState = {
   previewMode: false

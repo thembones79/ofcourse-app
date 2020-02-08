@@ -46,6 +46,46 @@
       "courseId": 1,
       "id": 5,
       "markdown": "1. Cut some pieces of wood.\n2. Glue a few of them togeher.\n3. Make the rest of the workbench.\n\n![](https://daveceddia.com/images/amazing-workbench.jpg)"
+    },
+    {
+      "name": "Using a Router",
+      "courseId": 2,
+      "id": 6
+    },
+    {
+      "name": "Fancy Joinery Techniques",
+      "courseId": 2,
+      "id": 7
+    },
+    {
+      "name": "Working with Exotic Woods",
+      "courseId": 2,
+      "id": 8
+    },
+    {
+      "name": "Picking a site",
+      "courseId": 3,
+      "id": 9
+    },
+    {
+      "name": "Pouring the foundation",
+      "courseId": 3,
+      "id": 10
+    },
+    {
+      "name": "Framing the house",
+      "courseId": 3,
+      "id": 11
+    },
+    {
+      "name": "Building the roof",
+      "courseId": 3,
+      "id": 12
+    },
+    {
+      "name": "Now finish the inside",
+      "courseId": 3,
+      "id": 13
     }
   ],
   "users": [
@@ -53,8 +93,15 @@
       "username": "dave",
       "password": "secret",
       "role": "user",
-      "courses": [],
+      "courses": [1],
       "id": 1
+    },
+    {
+      "username": "admin",
+      "password": "secret",
+      "role": "admin",
+      "courses": [],
+      "id": 2
     }
   ]
 }

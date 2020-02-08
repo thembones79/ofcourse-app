@@ -1,4 +1,4 @@
-import produce from "immer";
+import produce from 'immer';
 import {
   LOGIN_BEGIN,
   LOGIN_SUCCESS,
@@ -7,14 +7,13 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   LOGOUT_SUCCESS
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   user: null,
   loading: false,
   error: null
 };
-
 const reducer = produce((draft, action) => {
   switch (action.type) {
     case LOGIN_BEGIN:

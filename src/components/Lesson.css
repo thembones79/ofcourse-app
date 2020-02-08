@@ -12,9 +12,6 @@
   font-size: 16px;
   margin-bottom: 0;
 }
-.add-lesson-button {
-  min-height: 40px;
-}
 .lesson-item.editing,
 .add-lesson-button.editing {
   flex-direction: column;

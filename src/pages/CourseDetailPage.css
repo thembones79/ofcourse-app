@@ -17,6 +17,13 @@
   background-color: #673ab7;
   margin: 0;
   font-size: 24px;
+  flex: 1;
+}
+.CourseDetail header .LoginLogout {
+  border: none;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
 }
 .CourseDetail header .current-lesson {
   margin: 0;
@@ -81,7 +88,7 @@
 }
 .lesson-editor {
   font-size: 18px;
-  font-family: "Fira Mono", monospace;
+  font-family: 'Fira Mono', monospace;
   flex: 1;
   padding: 10px;
 }

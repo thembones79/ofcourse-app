@@ -2,7 +2,7 @@
 LoginPage styles
 */
 .LoginPage * {
-  font-family: "IBM Plex Sans";
+  font-family: 'IBM Plex Sans';
 }
 .LoginPage {
   max-width: 250px;
