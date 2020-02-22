@@ -18,7 +18,7 @@
   ],
   "lessons": [
     {
-      "name": "Choosing good lumber",
+      "name": "Choosing good lumberr",
       "courseId": 1,
       "id": 1,
       "markdown": "Buy the straightest 2x4s you can find. Take your time picking through the pile. It'll save you time later!"
@@ -27,7 +27,7 @@
       "name": "Which tools to buy",
       "courseId": 1,
       "id": 2,
-      "markdown": "* Table saw\n* Impact driver\n* Circular saw\n* Miter saw"
+      "markdown": "* Table sawr\n* Impact driver\n* Circular saw\n* Miter saw"
     },
     {
       "name": "Safety",
@@ -93,7 +93,10 @@
       "username": "dave",
       "password": "secret",
       "role": "user",
-      "courses": [1],
+      "courses": [
+        1,
+        2
+      ],
       "id": 1
     },
     {
